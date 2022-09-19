@@ -13,3 +13,11 @@ const DetailsMeetUp = () => {
 };
 
 export default DetailsMeetUp;
+
+export const getStaticPaths = async () => {
+  const data = await fetch("http://localhost:8000/api/v1/meetup/");
+  const meetups = await data.json();
+  const paths = meetups.map((event) => ({
+    params: { slug: event.slug },
+  }));
+};

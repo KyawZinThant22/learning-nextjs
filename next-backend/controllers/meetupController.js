@@ -30,7 +30,25 @@ exports.createNewMeetup = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: "fail",
-      message: err,
+      message: err.message,
+    });
+  }
+};
+
+exports.getMeetup = async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const meetup = await MEETUP.findById(req.params.id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        meetup: meetup,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
     });
   }
 };

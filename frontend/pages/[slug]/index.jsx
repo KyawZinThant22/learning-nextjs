@@ -15,29 +15,31 @@ const DetailsMeetUp = ({ meetup }) => {
 
 export default DetailsMeetUp;
 
-export const getStaticPaths = async () => {
-  const data = await fetch("http://localhost:8000/api/v1/meetup");
-  const meetups = await data.json();
-  const paths = meetups?.map((event) => ({
-    params: { slug: event.slug },
-  }));
+export async function getStaticPaths() {
+  const resp = await fetch("http://localhost:8000/api/v1/meetup/:id");
+  const events = await resp.json();
+  console.log(events);
+  const paths =
+    events.length > 0 &&
+    events.map((evt) => ({
+      params: { slug: evt.slug },
+    }));
 
+  console.log(paths);
   return {
     paths,
     fallback: "blocking",
   };
-};
+}
 
-export const getStaticProps = async (context) => {
-  const data = await fetch(
-    `http://localhost:8000/api/v1/meetup/slug=${context.params.slug}`
+export async function getStaticProps(context) {
+  const resp = await fetch(
+    `http://localhost:8000/api/v1/meetup/${context.slug}`
   );
-  const meetup = await data.json();
+  const events = await resp.json();
 
   return {
-    props: {
-      meetup,
-    },
+    props: { evt: events[0] },
     revalidate: 1,
   };
-};
+}

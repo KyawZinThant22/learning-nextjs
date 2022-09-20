@@ -6,8 +6,6 @@ import axios from "axios";
 const NewMeetup = () => {
   const router = useRouter();
   const handleNewMeetup = async (newMeetUp) => {
-    console.log(newMeetUp);
-
     const data = await fetch("http://localhost:8000/api/v1/meetup", {
       method: "POST",
       headers: {

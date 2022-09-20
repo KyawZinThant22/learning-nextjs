@@ -67,3 +67,24 @@ exports.deleteMeetup = async (req, res) => {
     });
   }
 };
+
+exports.updateMeetup = async (req, res) => {
+  try {
+    const data = await MEETUP.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        data,
+      },
+    });
+  } catch (err) {
+    res.status(200).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};

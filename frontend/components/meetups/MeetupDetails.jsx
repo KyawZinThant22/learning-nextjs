@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 import classes from "./meetupDetails.module.css";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";

@@ -1,8 +1,14 @@
+import Apphead from "../components/Apphead";
 import MeetUpList from "../components/meetups/MeetupList";
 
 const HomePage = ({ meetup }) => {
   return (
     <div>
+      <Apphead
+        title="All Meet Up"
+        author="kyawzinthant"
+        description="learning project with next and nodejs"
+      />
       <MeetUpList meetups={meetup} />
     </div>
   );

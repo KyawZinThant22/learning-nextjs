@@ -1,15 +1,19 @@
 import MeetupDetails from "../../components/meetups/MeetupDetails";
 import { useRouter } from "next/router";
+import Apphead from "../../components/Apphead";
 
 const DetailsMeetUp = ({ meetup }) => {
   return (
-    <MeetupDetails
-      img={meetup?.image}
-      title={meetup?.title}
-      address={meetup?.address}
-      description={meetup?.description}
-      path={meetup?._id.toString()}
-    />
+    <>
+      <Apphead title={meetup.title} />
+      <MeetupDetails
+        img={meetup?.image}
+        title={meetup?.title}
+        address={meetup?.address}
+        description={meetup?.description}
+        path={meetup?._id.toString()}
+      />
+    </>
   );
 };
 

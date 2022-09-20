@@ -1,13 +1,14 @@
 import MeetupDetails from "../../components/meetups/MeetupDetails";
+import { useRouter } from "next/router";
 
 const DetailsMeetUp = ({ meetup }) => {
-  console.log(meetup);
   return (
     <MeetupDetails
-      img={meetup.image}
-      title={meetup.title}
-      address={meetup.address}
-      description={meetup.description}
+      img={meetup?.image}
+      title={meetup?.title}
+      address={meetup?.address}
+      description={meetup?.description}
+      path={meetup?._id.toString()}
     />
   );
 };

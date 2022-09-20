@@ -36,7 +36,6 @@ exports.createNewMeetup = async (req, res) => {
 };
 
 exports.getMeetup = async (req, res) => {
-  console.log(req.params.id);
   try {
     const meetup = await MEETUP.findById(req.params.id);
     res.status(200).json({
@@ -44,6 +43,22 @@ exports.getMeetup = async (req, res) => {
       data: {
         meetup: meetup,
       },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
+exports.deleteMeetup = async (req, res) => {
+  try {
+    await MEETUP.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      status: "success",
+      data: null,
     });
   } catch (err) {
     res.status(400).json({
